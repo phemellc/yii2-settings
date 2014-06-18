@@ -20,9 +20,9 @@ use pheme\settings\Module;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'module') ?>
-
     <?= $form->field($model, 'section') ?>
+
+    <?= $form->field($model, 'type') ?>
 
     <?= $form->field($model, 'key') ?>
 

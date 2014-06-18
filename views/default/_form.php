@@ -15,11 +15,11 @@ use pheme\settings\Module;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'value')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'module')->textInput(['maxlength' => 255]) ?>
-
     <?= $form->field($model, 'section')->textInput(['maxlength' => 255]) ?>
+
+    <?= $form->field($model, 'type')->textInput(['maxlength' => 255]) ?>
+
+    <?= $form->field($model, 'value')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'key')->textInput(['maxlength' => 255]) ?>
 

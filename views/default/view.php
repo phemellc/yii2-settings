@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'module',
+            'type',
             'section',
             'key',
             'value:ntext',
