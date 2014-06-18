@@ -10,16 +10,24 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist pheme/yii2-pheme-settings "*"
+php composer.phar require --prefer-dist pheme/yii2-settings "*"
 ```
 
 or add
 
 ```
-"pheme/yii2-pheme-settings": "*"
+"pheme/yii2-settings": "*"
 ```
 
 to the require section of your `composer.json` file.
+
+Subsequently, run
+
+```php
+./yii migrate/up --migrationPath=@vendor/pheme/yii2-settings/migrations
+```
+
+in order to create the settings table in your database.
 
 
 Usage
