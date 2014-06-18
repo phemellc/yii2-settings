@@ -10,7 +10,7 @@ use Yii;
  * This is the model class for table "settings".
  *
  * @property integer $id
- * @property string $module
+ * @property string $type
  * @property string $section
  * @property string $key
  * @property string $value
@@ -32,7 +32,7 @@ class Setting extends ActiveRecord
     {
         return [
             [['value'], 'string'],
-            [['module', 'section', 'key'], 'string', 'max' => 255]
+            [['type', 'section', 'key'], 'string', 'max' => 255]
         ];
     }
 
@@ -43,7 +43,7 @@ class Setting extends ActiveRecord
     {
         return [
             'id' => Module::t('settings', 'ID'),
-            'module' => Module::t('settings', 'Module'),
+            'type' => Module::t('settings', 'Module'),
             'section' => Module::t('settings', 'Section'),
             'key' => Module::t('settings', 'Key'),
             'value' => Module::t('settings', 'Value'),

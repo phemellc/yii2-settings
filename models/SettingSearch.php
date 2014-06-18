@@ -15,7 +15,7 @@ class SettingSearch extends Setting
     {
         return [
             [['id'], 'integer'],
-            [['module', 'section', 'key', 'value'], 'safe'],
+            [['type', 'section', 'key', 'value'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class SettingSearch extends Setting
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'module', $this->module])
+        $query->andFilterWhere(['like', 'type', $this->type])
             ->andFilterWhere(['like', 'section', $this->section])
             ->andFilterWhere(['like', 'key', $this->key])
             ->andFilterWhere(['like', 'value', $this->value]);
