@@ -6,9 +6,7 @@ use Yii;
 
 class Module extends \yii\base\Module
 {
-    public $controllerNamespace = 'app\modules\settings\controllers';
-
-    public $defaultRoute = 'settings';
+    public $controllerNamespace = 'pheme\settings\controllers';
 
     public function init()
     {
