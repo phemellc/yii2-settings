@@ -1,4 +1,9 @@
 <?php
+/**
+ * @link http://phe.me
+ * @copyright Copyright (c) 2014 Pheme
+ * @license MIT http://opensource.org/licenses/MIT
+ */
 
 use yii\helpers\Html;
 use pheme\settings\Module;
@@ -8,9 +13,13 @@ use pheme\settings\Module;
  * @var pheme\settings\models\Setting $model
  */
 
-$this->title = Module::t('settings', 'Create {modelClass}', [
-    'modelClass' => 'Setting',
-]);
+$this->title = Module::t(
+    'settings',
+    'Create {modelClass}',
+    [
+        'modelClass' => 'Setting',
+    ]
+);
 $this->params['breadcrumbs'][] = ['label' => Module::t('settings', 'Settings'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -18,8 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <?=
+    $this->render(
+        '_form',
+        [
+            'model' => $model,
+        ]
+    ) ?>
 
 </div>
