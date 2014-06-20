@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @link http://phe.me
+ * @copyright Copyright (c) 2014 Pheme
+ * @license MIT http://opensource.org/licenses/MIT
+ */
+
 namespace pheme\settings\controllers;
 
 use Yii;
@@ -14,6 +20,10 @@ use yii\filters\VerbFilter;
  */
 class DefaultController extends Controller
 {
+    /**
+     * Defines the controller behaviors
+     * @return array
+     */
     public function behaviors()
     {
         return [
@@ -27,7 +37,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * Lists all Setting models.
+     * Lists all Settings.
      * @return mixed
      */
     public function actionIndex()
@@ -35,44 +45,53 @@ class DefaultController extends Controller
         $searchModel = new SettingSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        return $this->render(
+            'index',
+            [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]
+        );
     }
 
     /**
-     * Displays a single Setting model.
+     * Displays the details of a single Setting.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        return $this->render(
+            'view',
+            [
+                'model' => $this->findModel($id),
+            ]
+        );
     }
 
     /**
-     * Creates a new Setting model.
+     * Creates a new Setting.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Setting();
+        $model = new Setting(['active' => 1]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            return $this->render(
+                'create',
+                [
+                    'model' => $model,
+                ]
+            );
         }
     }
 
     /**
-     * Updates an existing Setting model.
+     * Updates an existing Setting.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -84,14 +103,17 @@ class DefaultController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+            return $this->render(
+                'update',
+                [
+                    'model' => $model,
+                ]
+            );
         }
     }
 
     /**
-     * Deletes an existing Setting model.
+     * Deletes an existing Setting.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -104,7 +126,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * Finds the Setting model based on its primary key value.
+     * Finds a Setting model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
      * @return Setting the loaded model
