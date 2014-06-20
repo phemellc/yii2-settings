@@ -7,6 +7,9 @@
 
 use yii\db\Schema;
 
+/**
+ * @author Aris Karageorgos <aris@phe.me>
+ */
 class m140618_045255_create_settings extends \yii\db\Migration
 {
     public function up()

@@ -10,6 +10,8 @@ namespace pheme\settings\models;
 /**
  * Interface SettingInterface
  * @package pheme\settings\models
+ *
+ * @author Aris Karageorgos <aris@phe.me>
  */
 interface SettingInterface
 {

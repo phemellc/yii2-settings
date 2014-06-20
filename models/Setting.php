@@ -25,6 +25,8 @@ use Yii;
  * @property boolean $active
  * @property string $created
  * @property string $modified
+ *
+ * @author Aris Karageorgos <aris@phe.me>
  */
 class Setting extends ActiveRecord implements SettingInterface
 {
