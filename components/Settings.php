@@ -190,10 +190,10 @@ class Settings extends Component
      */
     public function clearCache()
     {
+        $this->_data = null;
         if ($this->cache instanceof Cache) {
             return $this->cache->delete($this->cacheKey);
         }
-        $this->_data = null;
         return true;
     }
 
