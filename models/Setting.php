@@ -106,6 +106,7 @@ class Setting extends ActiveRecord implements SettingInterface
 
         if ($model === false) {
             $model = new static();
+            $model->active = 1;
         }
         $model->section = $section;
         $model->key = $key;
