@@ -10,6 +10,9 @@
             "email": "aris@phe.me"
         }
     ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
     "autoload": {
         "psr-4": {
             "pheme\\settings\\": ""
