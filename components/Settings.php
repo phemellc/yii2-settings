@@ -46,6 +46,13 @@ class Settings extends Component
     public $cacheKey = 'pheme/settings';
 
     /**
+     * Allow the component to clear the front application cache if available.
+     *
+     * @var string cache key prefix
+     */
+    public $frontKeyPrefix;
+
+    /**
      * Holds a cached copy of the data for the current request
      *
      * @var mixed
@@ -192,6 +199,12 @@ class Settings extends Component
     {
         $this->_data = null;
         if ($this->cache instanceof Cache) {
+            if (!is_null($this->frontKeyPrefix)) {
+                $backendKeyPrefix = $this->cache->keyPrefix;
+                $this->cache->keyPrefix = $this->frontKeyPrefix;
+                $this->cache->delete($this->cacheKey);
+                $this->cache->keyPrefix = $backendKeyPrefix;
+            }
             return $this->cache->delete($this->cacheKey);
         }
         return true;
