@@ -39,18 +39,21 @@ class Settings extends Component
     public $cache = 'cache';
 
     /**
+     * @var Cache|string the front cache object or the application component ID of the front cache object.
+     * Front cache will be cleared through this cache object, if it is available.
+     *
+     * After the Settings object is created, if you want to change this property,
+     * you should only assign it with a cache object.
+     * Set this property to null if you do not want to clear the front cache.
+     */
+    public $frontCache;
+
+    /**
      * To be used by the cache component.
      *
      * @var string cache key
      */
     public $cacheKey = 'pheme/settings';
-
-    /**
-     * Allow the component to clear the front application cache if available.
-     *
-     * @var string cache key prefix
-     */
-    public $frontKeyPrefix;
 
     /**
      * Holds a cached copy of the data for the current request
@@ -72,6 +75,9 @@ class Settings extends Component
 
         if (is_string($this->cache)) {
             $this->cache = Yii::$app->get($this->cache, false);
+        }
+        if (is_string($this->frontCache)) {
+            $this->frontCache = Yii::$app->get($this->frontCache, false);
         }
     }
 
@@ -198,13 +204,10 @@ class Settings extends Component
     public function clearCache()
     {
         $this->_data = null;
+        if ($this->frontCache instanceof Cache) {
+            $this->frontCache->delete($this->cacheKey);
+        }
         if ($this->cache instanceof Cache) {
-            if (!is_null($this->frontKeyPrefix)) {
-                $backendKeyPrefix = $this->cache->keyPrefix;
-                $this->cache->keyPrefix = $this->frontKeyPrefix;
-                $this->cache->delete($this->cacheKey);
-                $this->cache->keyPrefix = $backendKeyPrefix;
-            }
             return $this->cache->delete($this->cacheKey);
         }
         return true;
