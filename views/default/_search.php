@@ -29,19 +29,11 @@ use pheme\settings\Module;
 
     <?= $form->field($model, 'section') ?>
 
-    <?= $form->field($model, 'type') ?>
-
-
     <?= $form->field($model, 'key') ?>
 
     <?= $form->field($model, 'value') ?>
 
     <?= $form->field($model, 'active')->checkbox() ?>
-
-    <?= $form->field($model, 'created') ?>
-
-    <?= $form->field($model, 'modified') ?>
-
 
     <div class="form-group">
         <?= Html::submitButton(Module::t('settings', 'Search'), ['class' => 'btn btn-primary']) ?>

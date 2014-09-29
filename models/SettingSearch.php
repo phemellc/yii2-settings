@@ -61,15 +61,12 @@ class SettingSearch extends Setting
             [
                 'id' => $this->id,
                 'active' => $this->active,
+                'section' => $this->section,
             ]
         );
 
-        $query->andFilterWhere(['like', 'type', $this->type])
-            ->andFilterWhere(['like', 'section', $this->section])
-            ->andFilterWhere(['like', 'key', $this->key])
-            ->andFilterWhere(['like', 'value', $this->value])
-            ->andFilterWhere(['like', 'created', $this->created])
-            ->andFilterWhere(['like', 'modified', $this->modified]);
+        $query->andFilterWhere(['like', 'key', $this->key])
+            ->andFilterWhere(['like', 'value', $this->value]);
 
         return $dataProvider;
     }

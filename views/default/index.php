@@ -8,6 +8,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use pheme\settings\Module;
+use pheme\settings\models\Setting;
+use yii\helpers\ArrayHelper;
 
 /**
  * @var yii\web\View $this
@@ -46,10 +48,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'columns' => [
                 'id',
                 //'type',
-                'section',
+                [
+                    'attribute' => 'section',
+                    'filter' => ArrayHelper::map(
+                        Setting::find()->select('section')->distinct()->all(), 'section', 'section'
+                    ),
+                ],
                 'key',
                 'value:ntext',
-                'active:boolean',
+                [
+                    'attribute' => 'active',
+                    'format' => 'boolean',
+                    'filter' => [1 => Yii::t('yii', 'Yes'), 0 => Yii::t('yii', 'No')],
+                ],
                 ['class' => 'yii\grid\ActionColumn'],
             ],
         ]
