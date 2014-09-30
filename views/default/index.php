@@ -51,14 +51,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute' => 'section',
                     'filter' => ArrayHelper::map(
-                        Setting::find()->select('section')->distinct()->all(), 'section', 'section'
+                        Setting::find()->select('section')->distinct()->all(),
+                        'section',
+                        'section'
                     ),
                 ],
                 'key',
                 'value:ntext',
                 [
+                    'class' => '\pheme\grid\ToggleColumn',
                     'attribute' => 'active',
-                    'format' => 'boolean',
                     'filter' => [1 => Yii::t('yii', 'Yes'), 0 => Yii::t('yii', 'No')],
                 ],
                 ['class' => 'yii\grid\ActionColumn'],

@@ -11,7 +11,8 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "*"
+        "yiisoft/yii2": "*",
+        "pheme/yii2-toggle-column": "*"
     },
     "autoload": {
         "psr-4": {

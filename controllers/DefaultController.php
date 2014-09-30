@@ -11,6 +11,7 @@ namespace pheme\settings\controllers;
 use Yii;
 use pheme\settings\models\Setting;
 use pheme\settings\models\SettingSearch;
+use pheme\grid\actions\ToggleAction;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,6 +36,17 @@ class DefaultController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+        ];
+    }
+
+    public function actions()
+    {
+        return [
+            'toggle' => [
+                'class' => ToggleAction::className(),
+                'modelClass' => 'pheme\settings\models\Setting',
+                //'setFlash' => true,
+            ]
         ];
     }
 
