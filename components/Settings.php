@@ -18,7 +18,7 @@ use Yii;
 class Settings extends Component
 {
     /**
-     * @var string
+     * @var string settings model. Make sure your settings model calls clearCache in the afterSave callback
      */
     public $modelClass = 'pheme\settings\models\Setting';
 
@@ -148,7 +148,7 @@ class Settings extends Component
             $section = $pieces[0];
             $key = $pieces[1];
         }
-        return $this->model->deleteSetting($section, $key) && $this->clearCache();
+        return $this->model->deleteSetting($section, $key);
     }
 
     /**
@@ -158,7 +158,7 @@ class Settings extends Component
      */
     public function deleteAll()
     {
-        return $this->model->deleteAllSettings() && $this->clearCache();
+        return $this->model->deleteAllSettings();
     }
 
     /**
@@ -175,7 +175,7 @@ class Settings extends Component
             $section = $pieces[0];
             $key = $pieces[1];
         }
-        return $this->model->activateSetting($section, $key) && $this->clearCache();
+        return $this->model->activateSetting($section, $key);
     }
 
     /**
@@ -192,7 +192,7 @@ class Settings extends Component
             $section = $pieces[0];
             $key = $pieces[1];
         }
-        return $this->model->deactivateSetting($section, $key) && $this->clearCache();
+        return $this->model->deactivateSetting($section, $key);
     }
 
     /**

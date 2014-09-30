@@ -51,6 +51,18 @@ class Setting extends ActiveRecord implements SettingInterface
         ];
     }
 
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        Yii::$app->settings->clearCache();
+    }
+
+    public function afterDelete()
+    {
+        parent::afterDelete();
+        Yii::$app->settings->clearCache();
+    }
+
     /**
      * @inheritdoc
      */

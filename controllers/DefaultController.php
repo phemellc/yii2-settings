@@ -81,7 +81,6 @@ class DefaultController extends Controller
         $model = new Setting(['active' => 1]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->settings->clearCache();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render(
@@ -104,7 +103,6 @@ class DefaultController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->settings->clearCache();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render(
@@ -124,8 +122,8 @@ class DefaultController extends Controller
      */
     public function actionDelete($id)
     {
-        if ($this->findModel($id)->delete()) {
-            Yii::$app->settings->clearCache();
+        if (Yii::$app->request->isPost) {
+            $this->findModel($id)->delete();
         }
         return $this->redirect(['index']);
     }
