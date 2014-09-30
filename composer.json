@@ -2,7 +2,11 @@
     "name": "pheme/yii2-settings",
     "description": "Yii2 Database settings",
     "type": "yii2-extension",
-    "keywords": ["yii2", "config", "settings"],
+    "keywords": [
+        "yii2",
+        "config",
+        "settings"
+    ],
     "license": "BSD-3-Clause",
     "authors": [
         {
