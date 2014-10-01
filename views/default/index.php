@@ -10,6 +10,7 @@ use yii\grid\GridView;
 use pheme\settings\Module;
 use pheme\settings\models\Setting;
 use yii\helpers\ArrayHelper;
+use yii\widgets\Pjax;
 
 /**
  * @var yii\web\View $this
@@ -39,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'btn btn-success']
         ) ?>
     </p>
-
+    <?php Pjax::begin(); ?>
     <?=
     GridView::widget(
         [
@@ -67,5 +68,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]
     ); ?>
-
+    <?php Pjax::end(); ?>
 </div>
