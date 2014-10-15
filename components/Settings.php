@@ -91,9 +91,10 @@ class Settings extends Component
      *
      * @param $key
      * @param null $section
+     * @param null $default
      * @return mixed
      */
-    public function get($key, $section = null)
+    public function get($key, $section = null, $default = null)
     {
         if (is_null($section)) {
             $pieces = explode('.', $key);
@@ -106,7 +107,7 @@ class Settings extends Component
         if (isset($data[$section][$key][0])) {
             settype($data[$section][$key][0], $data[$section][$key][1]);
         } else {
-            $data[$section][$key][0] = false;
+            $data[$section][$key][0] = $default;
         }
         return $data[$section][$key][0];
     }
