@@ -97,9 +97,13 @@ class Settings extends Component
     public function get($key, $section = null, $default = null)
     {
         if (is_null($section)) {
-            $pieces = explode('.', $key);
-            $section = $pieces[0];
-            $key = $pieces[1];
+            $pieces = explode('.', $key, 1);
+            if (count($pieces) > 1) {
+                $section = $pieces[0];
+                $key = $pieces[1];
+            } else {
+                $section = '';
+            }
         }
 
         $data = $this->getRawConfig();
