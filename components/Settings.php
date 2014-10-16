@@ -97,7 +97,7 @@ class Settings extends Component
     public function get($key, $section = null, $default = null)
     {
         if (is_null($section)) {
-            $pieces = explode('.', $key, 1);
+            $pieces = explode('.', $key, 2);
             if (count($pieces) > 1) {
                 $section = $pieces[0];
                 $key = $pieces[1];
