@@ -15,7 +15,7 @@ class m140618_045255_create_settings extends \yii\db\Migration
     public function up()
     {
         $this->createTable(
-            'settings',
+            '{{%settings}}',
             [
                 'id' => Schema::TYPE_PK,
                 'type' => Schema::TYPE_STRING,
