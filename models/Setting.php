@@ -35,7 +35,7 @@ class Setting extends ActiveRecord implements SettingInterface
      */
     public static function tableName()
     {
-        return 'settings';
+        return '{{%settings}}';
     }
 
     /**
