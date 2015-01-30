@@ -124,7 +124,7 @@ class Setting extends ActiveRecord implements SettingInterface
         $model->key = $key;
         $model->value = $value;
 
-        if ($type === null) {
+        if ($type !== null) {
             $model->type = $type;
         } else {
             $model->type = gettype($value);
