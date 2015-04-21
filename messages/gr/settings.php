@@ -31,6 +31,7 @@ return [
     'Search' => '',
     'Section' => '',
     'Settings' => '',
+    'Setting' => '',
     'Type' => '',
     'Update' => '',
     'Update {modelClass}: ' => '',

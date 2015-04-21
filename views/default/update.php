@@ -17,7 +17,7 @@ $this->title = Module::t(
         'settings',
         'Update {modelClass}: ',
         [
-            'modelClass' => 'Setting',
+            'modelClass' => Module::t('settings', 'Setting'),
         ]
     ) . ' ' . $model->section. '.' . $model->key;
 

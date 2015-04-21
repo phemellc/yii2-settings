@@ -17,7 +17,7 @@ $this->title = Module::t(
     'settings',
     'Create {modelClass}',
     [
-        'modelClass' => 'Setting',
+        'modelClass' => Module::t('settings', 'Setting'),
     ]
 );
 $this->params['breadcrumbs'][] = ['label' => Module::t('settings', 'Settings'), 'url' => ['index']];
