@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'settings',
                 'Create {modelClass}',
                 [
-                    'modelClass' => 'Setting',
+                    'modelClass' => Module::t('settings', 'Setting'),
                 ]
             ),
             ['create'],

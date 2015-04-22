@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Active' => 'Активний',
+    'Active' => 'Активне',
     'Are you sure you want to delete this item?' => 'Ви впевнені, що хочете видалити цей запис?',
     'Change at your own risk' => 'Змінюєте на свій страх і ризик',
     'Create' => 'Створити',
