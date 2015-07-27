@@ -102,7 +102,7 @@ class Setting extends ActiveRecord implements SettingInterface
      */
     public function getSettings()
     {
-        $settings = static::find()->where(['active' => 1])->asArray()->all();
+        $settings = static::find()->where(['active' => true])->asArray()->all();
         return array_merge_recursive(
             ArrayHelper::map($settings, 'key', 'value', 'section'),
             ArrayHelper::map($settings, 'key', 'type', 'section')

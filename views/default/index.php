@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute' => 'section',
                     'filter' => ArrayHelper::map(
-                        Setting::find()->select('section')->distinct()->where('section <> ""')->all(),
+                        Setting::find()->select('section')->distinct()->where(['<>', 'section', ''])->all(),
                         'section',
                         'section'
                     ),
