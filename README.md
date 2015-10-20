@@ -43,6 +43,7 @@ Add this to your main configuration's modules array
 	'modules' => [
         'settings' => [
             'class' => 'pheme\settings\Module',
+            'sourceLanguage' => 'en'
         ],
         ...
 	],
