@@ -24,6 +24,12 @@ class Module extends \yii\base\Module
     public $controllerNamespace = 'pheme\settings\controllers';
 
     /**
+     *
+     * @var string source language for translation 
+     */
+    public $sourceLanguage = 'en-US';
+    
+    /**
      * Init module
      */
     public function init()
@@ -39,7 +45,7 @@ class Module extends \yii\base\Module
     {
         Yii::$app->i18n->translations['extensions/yii2-settings/*'] = [
             'class' => 'yii\i18n\PhpMessageSource',
-            'sourceLanguage' => 'en-US',
+            'sourceLanguage' => $this->sourceLanguage,
             'basePath' => '@vendor/pheme/yii2-settings/messages',
             'fileMap' => [
                 'extensions/yii2-settings/settings' => 'settings.php',
