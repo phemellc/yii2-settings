@@ -80,3 +80,49 @@ $settings->set('key', 'value', 'section', 'integer');
 $settings->clearCache();
 
 ```
+
+SettingsAction
+-----
+
+To develope custom settings form, we can use `SettingsAction`.
+
+1. Create a `yii\base\Model` with normal validation rules.
+2. Create an associated view with `ActiveForm` contain all the settings we need.
+3. Add `pheme\settings\SettingsAction` to the controller.
+
+The settings will be stored in section taken from form name, with key is the field name.
+
+__Model__:
+
+```
+class Site extends Model {
+	public $siteName, $siteDescription;
+	function rules(){
+		return [
+				[['siteName', 'siteDescription'], 'string'],
+		];
+	}
+}
+```
+__Views__:
+```
+<?php $form = ActiveForm::begin(['id' => 'site-settings-form']); ?>
+<?= $form->field($model, 'siteName') ?>
+<?= $form->field($model, 'siteDescription') ?>
+```
+__Controller__:
+```
+function actions(){
+   return [
+   		....
+				'site-settings' => [
+        				'class' => 'pheme\settings\SettingsAction',
+        				'modelClass' => 'app\models\Site',
+        				//'scenario' => 'site',	// Change if you want to re-use the model for multiple setting form.
+        				'viewName' => 'site-settings'	// The form we need to render
+        		],
+        ....
+    ];
+}
+```
+
