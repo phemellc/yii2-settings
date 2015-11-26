@@ -17,22 +17,20 @@ class m140618_045255_create_settings extends \yii\db\Migration
         $this->createTable(
             '{{%settings}}',
             [
-                'id' => Schema::TYPE_PK,
-                'type' => Schema::TYPE_STRING,
-                'section' => Schema::TYPE_STRING,
-                'key' => Schema::TYPE_STRING,
-                'value' => Schema::TYPE_TEXT,
-                'active' => Schema::TYPE_BOOLEAN,
-                'created' => Schema::TYPE_DATETIME,
-                'modified' => Schema::TYPE_DATETIME,
+                'id' => $this->primaryKey(),
+                'type' => $this->string(255)->notNull(),
+                'section' => $this->string(255)->notNull(),
+                'key' => $this->string(255)->notNull(),
+                'value' => $this->text(),
+                'active' => $this->boolean(),
+                'created' => $this->dateTime(),
+                'modified' => $this->dateTime(),
             ]
         );
     }
 
     public function down()
     {
-        echo "m140618_045255_create_settings cannot be reverted.\n";
-
-        return false;
+        $this->dropTable('{{%settings}}');
     }
 }

@@ -46,6 +46,13 @@ class Setting extends ActiveRecord implements SettingInterface
         return [
             [['value'], 'string'],
             [['section', 'key'], 'string', 'max' => 255],
+            [
+                ['key'],
+                'unique',
+                'targetAttribute' => ['section', 'key'],
+                'message' =>
+                    Module::t('settings', '{attribute} "{value}" already exists for this section.')
+            ],
             [['type', 'created', 'modified'], 'safe'],
             [['active'], 'boolean'],
         ];
