@@ -17,7 +17,7 @@ interface SettingInterface
 {
 
     /**
-     * Gets all a combined map of all the settings.
+     * Gets a combined map of all the settings.
      * @return array
      */
     public function getSettings();

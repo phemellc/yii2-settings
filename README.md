@@ -40,24 +40,24 @@ The component provides a way to retrieve and save settings programmatically.
 Add this to your main configuration's modules array
 
 ```php
-	'modules' => [
-        'settings' => [
-            'class' => 'pheme\settings\Module',
-            'sourceLanguage' => 'en'
-        ],
-        ...
-	],
+'modules' => [
+    'settings' => [
+        'class' => 'pheme\settings\Module',
+        'sourceLanguage' => 'en'
+    ],
+    ...
+],
 ```
 
 Add this to your main configuration's components array
 
 ```php
-	'components' => [
-		'settings' => [
-        	'class' => 'pheme\settings\components\Settings'
-        ],
-        ...
-	]
+'components' => [
+    'settings' => [
+        'class' => 'pheme\settings\components\Settings'
+    ],
+    ...
+]
 ```
 
 Typical component usage
@@ -84,17 +84,17 @@ $settings->clearCache();
 SettingsAction
 -----
 
-To develope custom settings form, we can use `SettingsAction`.
+To use a custom settings form, you can use the included `SettingsAction`.
 
-1. Create a `yii\base\Model` with normal validation rules.
-2. Create an associated view with `ActiveForm` contain all the settings we need.
-3. Add `pheme\settings\SettingsAction` to the controller.
+1. Create a model class with your validation rules.
+2. Create an associated view with an `ActiveForm` contain all the settings you need.
+3. Add `pheme\settings\SettingsAction` to the controller's actions.
 
-The settings will be stored in section taken from form name, with key is the field name.
+The settings will be stored in section taken from the form name, with the key being the field name.
 
 __Model__:
 
-```
+```php
 class Site extends Model {
 	public $siteName, $siteDescription;
 	function rules(){
@@ -105,24 +105,23 @@ class Site extends Model {
 }
 ```
 __Views__:
-```
+```php
 <?php $form = ActiveForm::begin(['id' => 'site-settings-form']); ?>
 <?= $form->field($model, 'siteName') ?>
 <?= $form->field($model, 'siteDescription') ?>
 ```
 __Controller__:
-```
+```php
 function actions(){
    return [
-   		....
-				'site-settings' => [
-        				'class' => 'pheme\settings\SettingsAction',
-        				'modelClass' => 'app\models\Site',
-        				//'scenario' => 'site',	// Change if you want to re-use the model for multiple setting form.
-        				'viewName' => 'site-settings'	// The form we need to render
-        		],
-        ....
+   		//....
+            'site-settings' => [
+                'class' => 'pheme\settings\SettingsAction',
+                'modelClass' => 'app\models\Site',
+                //'scenario' => 'site',	// Change if you want to re-use the model for multiple setting form.
+                'viewName' => 'site-settings'	// The form we need to render
+            ],
+        //....
     ];
 }
 ```
-

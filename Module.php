@@ -11,9 +11,6 @@ namespace pheme\settings;
 use Yii;
 
 /**
- * Class Module
- * @package pheme\settings
- *
  * @author Aris Karageorgos <aris@phe.me>
  */
 class Module extends \yii\base\Module

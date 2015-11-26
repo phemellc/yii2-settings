@@ -30,10 +30,11 @@ return [
     'Reset' => 'تنظیم مجدد',
     'Search' => 'جستجو',
     'Section' => 'قسمت',
-    'Settings' => 'تنظیمات',
     'Setting' => 'تنظیم',
+    'Settings' => 'تنظیمات',
     'Type' => 'نوع',
     'Update' => 'بروز رسانی',
     'Update {modelClass}: ' => 'بروز رسانی {modelClass}: ',
     'Value' => 'مقدار',
+    '{attribute} "{value}" already exists for this section.' => '',
 ];

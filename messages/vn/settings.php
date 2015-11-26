@@ -36,4 +36,5 @@ return [
     'Update' => 'Cập nhật',
     'Update {modelClass}: ' => 'Cập nhật {modelClass}: ',
     'Value' => 'Giá trị',
+    '{attribute} "{value}" already exists for this section.' => '',
 ];

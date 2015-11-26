@@ -30,10 +30,11 @@ return [
     'Reset' => '',
     'Search' => '',
     'Section' => '',
-    'Settings' => '',
     'Setting' => '',
+    'Settings' => '',
     'Type' => '',
     'Update' => '',
     'Update {modelClass}: ' => '',
     'Value' => '',
+    '{attribute} "{value}" already exists for this section.' => '',
 ];

@@ -30,10 +30,11 @@ return [
     'Reset' => 'Сбросить',
     'Search' => 'Поиск',
     'Section' => 'Секция',
-    'Settings' => 'Настройки',
     'Setting' => 'Настройка',
+    'Settings' => 'Настройки',
     'Type' => 'Тип',
     'Update' => 'Редактировать',
     'Update {modelClass}: ' => 'Редактирование {modelClass}: ',
     'Value' => 'Значение',
+    '{attribute} "{value}" already exists for this section.' => '',
 ];

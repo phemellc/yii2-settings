@@ -5,8 +5,6 @@
  * @license MIT http://opensource.org/licenses/MIT
  */
 
-use yii\db\Schema;
-
 /**
  * @author Aris Karageorgos <aris@phe.me>
  */

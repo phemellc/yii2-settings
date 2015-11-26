@@ -30,10 +30,11 @@ return [
     'Reset' => 'Zurücksetzen',
     'Search' => 'Suche',
     'Section' => 'Sektion',
-    'Settings' => 'Einstellungen',
     'Setting' => 'Einstellung',
+    'Settings' => 'Einstellungen',
     'Type' => 'Typ',
     'Update' => 'Aktualisieren',
     'Update {modelClass}: ' => 'Aktualisiere {modelClass}: ',
     'Value' => 'Wert',
+    '{attribute} "{value}" already exists for this section.' => '',
 ];
