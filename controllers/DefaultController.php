@@ -12,6 +12,7 @@ use Yii;
 use pheme\settings\models\Setting;
 use pheme\settings\models\SettingSearch;
 use pheme\grid\actions\ToggleAction;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -34,6 +35,15 @@ class DefaultController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => $this->module->accessRoles,
+                    ],
                 ],
             ],
         ];
