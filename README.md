@@ -104,6 +104,11 @@ class Site extends Model {
 		];
 	}
 	
+	public function fields()
+	{
+	        return ['siteName', 'siteDescription'];
+	}
+	
 	public function attributes()
 	{
 	        return ['siteName', 'siteDescription'];
