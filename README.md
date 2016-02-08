@@ -97,10 +97,21 @@ __Model__:
 ```php
 class Site extends Model {
 	public $siteName, $siteDescription;
-	function rules(){
+	public function rules()
+	{
 		return [
-				[['siteName', 'siteDescription'], 'string'],
+			[['siteName', 'siteDescription'], 'string'],
 		];
+	}
+	
+	public function fields()
+	{
+	        return ['siteName', 'siteDescription'];
+	}
+	
+	public function attributes()
+	{
+	        return ['siteName', 'siteDescription'];
 	}
 }
 ```
