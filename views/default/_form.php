@@ -8,6 +8,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use pheme\settings\Module;
+use \pheme\settings\models\Setting;
 
 /**
  * @var yii\web\View $this
@@ -30,15 +31,7 @@ use pheme\settings\Module;
 
     <?=
     $form->field($model, 'type')->dropDownList(
-        [
-            'string' => 'string',
-            'integer' => 'integer',
-            'boolean' => 'boolean',
-            'float' => 'float',
-            'array' => 'array',
-            'object' => 'object',
-            'null' => 'null'
-        ]
+        $model->getTypes()
     )->hint(Module::t('settings', 'Change at your own risk')) ?>
 
     <div class="form-group">

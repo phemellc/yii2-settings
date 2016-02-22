@@ -8,11 +8,14 @@
 namespace pheme\settings\models;
 
 use pheme\settings\Module;
+use yii\base\DynamicModel;
+use yii\base\InvalidParamException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\helpers\ArrayHelper;
 use Yii;
+use yii\helpers\Json;
 
 /**
  * This is the model class for table "settings".
@@ -39,6 +42,49 @@ class Setting extends ActiveRecord implements SettingInterface
     }
 
     /**
+     * @param bool $forDropDown if false - return array or validators, true - key=>value for dropDown
+     * @return array
+     */
+    public function getTypes($forDropDown = true)
+    {
+        $values = [
+            'string' => ['value', 'string'],
+            'integer' => ['value', 'integer'],
+            'boolean' => ['value', 'boolean', 'trueValue' => "1", 'falseValue' => "0", 'strict' => true],
+            'float' => ['value', 'number'],
+            'email' => ['value', 'email'],
+            'ip' => ['value', 'ip'],
+            'url' => ['value', 'url'],
+            'object' => ['value', function($attribute, $params) {
+                try {
+                    $object = Json::decode($this->$attribute);
+                } catch (InvalidParamException $e) {
+                    $this->addError($attribute, Module::t('settings', '"{attribute}" must be a valid JSON object', [
+                        'attribute' => $attribute,
+                    ]));
+                    return;
+                }
+                if (!is_array($object)) {
+                    $this->addError($attribute, Module::t('settings', '"{attribute}" must be a valid JSON object', [
+                        'attribute' => $attribute,
+                    ]));
+                }
+            }],
+        ];
+
+        if (!$forDropDown) {
+            return $values;
+        }
+
+        $return = [];
+        foreach ($values as $key => $value) {
+            $return[$key] = Module::t('settings', $key);
+        }
+
+        return $return;
+    }
+
+    /**
      * @inheritdoc
      */
     public function rules()
@@ -53,9 +99,36 @@ class Setting extends ActiveRecord implements SettingInterface
                 'message' =>
                     Module::t('settings', '{attribute} "{value}" already exists for this section.')
             ],
+            ['type', 'in', 'range' => static::getTypes()],
             [['type', 'created', 'modified'], 'safe'],
             [['active'], 'boolean'],
         ];
+    }
+
+    public function beforeSave($insert)
+    {
+        $validators = $this->getTypes(false);
+        if (!array_key_exists($this->type, $validators)) {
+            $this->addError('type', Module::t('settings', 'Please select correct type'));
+            return false;
+        }
+
+        $model = DynamicModel::validateData([
+            'value' => $this->value
+        ], [
+            $validators[$this->type],
+        ]);
+
+        if ($model->hasErrors()) {
+            $this->addError('value', $model->getFirstError('value'));
+            return false;
+        }
+
+        if ($this->hasErrors()) {
+            return false;
+        }
+
+        return parent::beforeSave($insert);
     }
 
     public function afterSave($insert, $changedAttributes)
