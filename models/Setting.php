@@ -99,7 +99,7 @@ class Setting extends ActiveRecord implements SettingInterface
                 'message' =>
                     Module::t('settings', '{attribute} "{value}" already exists for this section.')
             ],
-            ['type', 'in', 'range' => static::getTypes()],
+            ['type', 'in', 'range' => array_keys($this->getTypes(false))],
             [['type', 'created', 'modified'], 'safe'],
             [['active'], 'boolean'],
         ];
