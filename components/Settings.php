@@ -20,7 +20,7 @@ class Settings extends Component
     /**
      * @var string settings model. Make sure your settings model calls clearCache in the afterSave callback
      */
-    public $modelClass = 'pheme\settings\models\Setting';
+    public $modelClass = 'pheme\settings\models\BaseSetting';
 
     /**
      * Model to for storing and retrieving settings
