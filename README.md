@@ -87,7 +87,7 @@ SettingsAction
 To use a custom settings form, you can use the included `SettingsAction`.
 
 1. Create a model class with your validation rules.
-2. Create an associated view with an `ActiveForm` contain all the settings you need.
+2. Create an associated view with an `ActiveForm` containing all the settings you need.
 3. Add `pheme\settings\SettingsAction` to the controller's actions.
 
 The settings will be stored in section taken from the form name, with the key being the field name.
