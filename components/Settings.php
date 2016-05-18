@@ -109,7 +109,9 @@ class Settings extends Component
         $data = $this->getRawConfig();
 
         if (isset($data[$section][$key][0])) {
-            settype($data[$section][$key][0], $data[$section][$key][1]);
+            if ($data[$section][$key][1] !== 'object') {
+                settype($data[$section][$key][0], $data[$section][$key][1]);
+            }
         } else {
             $data[$section][$key][0] = $default;
         }
