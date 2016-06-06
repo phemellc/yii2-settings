@@ -184,4 +184,20 @@ class BaseSetting extends ActiveRecord implements SettingInterface
     {
         return static::deleteAll();
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function findSetting($key, $section = null) {
+        if (is_null($section)) {
+            $pieces = explode('.', $key, 2);
+            if (count($pieces) > 1) {
+                $section = $pieces[0];
+                $key = $pieces[1];
+            } else {
+                $section = '';
+            }
+        }
+        return $this->find()->where(['section' => $section, 'key' => $key])->limit(1)->one();
+    }
 }

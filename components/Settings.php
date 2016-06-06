@@ -90,8 +90,8 @@ class Settings extends Component
      * are equivalent
      *
      * @param $key
-     * @param null $section
-     * @param null $default
+     * @param string|null $section
+     * @param string|null $default
      * @return mixed
      */
     public function get($key, $section = null, $default = null)
@@ -116,6 +116,24 @@ class Settings extends Component
             $data[$section][$key][0] = $default;
         }
         return $data[$section][$key][0];
+    }
+
+    /**
+     * Checks to see if a setting exists.
+     * If $searchDisabled is set to true, calling this function will result in an additional query.
+     * @param $key
+     * @param string|null $section
+     * @param boolean $searchDisabled
+     * @return boolean
+     */
+    public function has($key, $section = null, $searchDisabled = false)
+    {
+        if ($searchDisabled) {
+            $setting = $this->model->findSetting($key, $section);
+        } else {
+            $setting = $this->get($key, $section);
+        }
+        is_null($setting) ? false : true;
     }
 
     /**
