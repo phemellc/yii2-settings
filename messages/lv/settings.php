@@ -48,3 +48,4 @@ return [
     'url' => 'URL',
     'object' => 'JSON',
 ];
+
