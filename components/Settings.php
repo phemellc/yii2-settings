@@ -133,7 +133,7 @@ class Settings extends Component
         } else {
             $setting = $this->get($key, $section);
         }
-        is_null($setting) ? false : true;
+        return is_null($setting) ? false : true;
     }
 
     /**
