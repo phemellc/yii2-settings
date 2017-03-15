@@ -133,7 +133,7 @@ class Settings extends Component
         } else {
             $setting = $this->get($key, $section);
         }
-        is_null($setting) ? false : true;
+        return is_null($setting) ? false : true;
     }
 
     /**
@@ -157,6 +157,24 @@ class Settings extends Component
             }
         }
         return false;
+    }
+
+    /**
+     * Returns the specified key or sets the key with the supplied (default) value
+     *
+     * @param $key
+     * @param $value
+     * @param null $section
+     * @param null $type
+     *
+     * @return bool|mixed
+     */
+    public function getOrSet($key, $value, $section = null, $type = null){
+        if ($this->has($key, $section, true)) {
+            return $this->get($key, $section);
+        } else {
+            return $this->set($key, $value, $section, $type);
+        }
     }
 
     /**
