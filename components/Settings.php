@@ -109,7 +109,7 @@ class Settings extends Component
         $data = $this->getRawConfig();
 
         if (isset($data[$section][$key][0])) {
-            if (in_array($data[$section][$key][1], ['boolean', 'bool', 'integer', 'int', 'float', 'string', 'array'])) {
+            if (in_array($data[$section][$key][1], ['object', 'boolean', 'bool', 'integer', 'int', 'float', 'string', 'array'])) {
                 settype($data[$section][$key][0], $data[$section][$key][1]);
             }
         } else {
