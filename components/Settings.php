@@ -152,9 +152,7 @@ class Settings extends Component
         }
 
         if ($this->model->setSetting($section, $key, $value, $type)) {
-            if ($this->clearCache()) {
-                return true;
-            }
+            return true;            
         }
         return false;
     }
