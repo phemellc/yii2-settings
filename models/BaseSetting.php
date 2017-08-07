@@ -15,7 +15,6 @@ use yii\helpers\ArrayHelper;
 use yii\base\InvalidParamException;
 use yii\behaviors\TimestampBehavior;
 
-
 /**
  * This is the model class for table "settings".
  *
