@@ -1,3 +1,5 @@
+[![StyleCI](https://styleci.io/repos/99540308/shield?branch=master)](https://styleci.io/repos/99540308)
+
 Yii2 Settings
 =============
 Yii2 Database settings
