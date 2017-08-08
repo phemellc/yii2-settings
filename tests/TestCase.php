@@ -53,7 +53,7 @@ class TestCase extends PHPUnit_Framework_TestCase
                     'class' => 'yii\db\Connection',
                     'dsn' => 'mysql:host=localhost:3306;dbname=test',
                     'username' => 'root',
-                    'password' => '123456',
+                    'password' => '',
                     'tablePrefix' => 'tb_'
                 ],
                 'i18n' => [
@@ -87,7 +87,7 @@ class TestCase extends PHPUnit_Framework_TestCase
                     'class' => 'yii\db\Connection',
                     'dsn' => 'mysql:host=localhost:3306;dbname=test',
                     'username' => 'root',
-                    'password' => '123456',
+                    'password' => '',
                     'tablePrefix' => 'tb_'
                 ],
                 'i18n' => [

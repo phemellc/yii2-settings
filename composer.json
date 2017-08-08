@@ -25,11 +25,5 @@
         "psr-4": {
             "pheme\\settings\\": ""
         }
-    },
-    "repositories": {
-        "packagist": {
-            "type": "composer",
-            "url": "https://packagist.phpcomposer.com"
-        }
     }
 }
