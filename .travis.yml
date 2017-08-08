@@ -5,13 +5,13 @@ matrix:
 
 php:
   - 5.6
-  - 7.1
+  #- 7.1
 
   # cache vendor dirs
-cache:
-  directories:
-    - $HOME/.composer/cache
-    - vendor
+#cache:
+#  directories:
+#    - $HOME/.composer/cache
+#    - vendor
 
 services:
   - mysql
