@@ -46,10 +46,8 @@ class ComponentSettingTest extends TestCase
 
     public function testHas()
     {
-
         $this->setting->activate("testSetKey","testSetKey" );
         $res = $this->setting->has("testSetKey", "testSetKey", true);
-        //var_dump($res);exit;
     }
 
     public function testDelete()
@@ -69,6 +67,4 @@ class ComponentSettingTest extends TestCase
         $res =$this->setting->activate("testSetKey", "testSetKey");
         $this->assertTrue($res);
     }
-
-
 }

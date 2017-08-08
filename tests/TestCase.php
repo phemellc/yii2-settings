@@ -53,7 +53,7 @@ class TestCase extends PHPUnit_Framework_TestCase
                     'class' => 'yii\db\Connection',
                     'dsn' => 'mysql:host=localhost:3306;dbname=test',
                     'username' => 'root',
-                    'password' => '',
+                    'password' => '123456',
                     'tablePrefix' => 'tb_'
                 ],
                 'i18n' => [
@@ -87,7 +87,7 @@ class TestCase extends PHPUnit_Framework_TestCase
                     'class' => 'yii\db\Connection',
                     'dsn' => 'mysql:host=localhost:3306;dbname=test',
                     'username' => 'root',
-                    'password' => '',
+                    'password' => '123456',
                     'tablePrefix' => 'tb_'
                 ],
                 'i18n' => [
@@ -134,11 +134,12 @@ class TestCase extends PHPUnit_Framework_TestCase
     {
 
         $db = Yii::$app->getDb();
-        $res =$db->createCommand()->dropTable('tb_settings')->execute();
+        $res = $db->createCommand()->dropTable('tb_settings')->execute();
     }
 
     protected function createTestDbData()
     {
+        //$this->mockApplication()->runAction('/migrate');
         $db = Yii::$app->getDb();
         try {
             $db->createCommand()->createTable('tb_settings', [
@@ -151,8 +152,8 @@ class TestCase extends PHPUnit_Framework_TestCase
                 'created' => "datetime",
                 'modified' => "datetime",
             ])->execute();
-        }catch (Exception $e){
-            return ;
+        } catch (Exception $e) {
+            return;
         }
     }
 }

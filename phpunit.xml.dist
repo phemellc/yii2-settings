@@ -14,9 +14,9 @@
     </testsuites>
     <filter>
         <whitelist>
-            <directory suffix=".php">./yii2-settings/models</directory>
-            <directory suffix=".php">./yii2-settings/components</directory>
-            <file>./yii2-settings/Module.php</file>
+            <directory suffix=".php">./models</directory>
+            <directory suffix=".php">./components</directory>
+            <file>./Module.php</file>
         </whitelist>
     </filter>
 </phpunit>

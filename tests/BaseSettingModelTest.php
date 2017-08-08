@@ -12,7 +12,6 @@ use Yii;
 
 class BaseSettingModelTest extends TestCase
 {
-
     public function setUp()
     {
         parent::setUp();
@@ -69,6 +68,4 @@ class BaseSettingModelTest extends TestCase
         $res = $this->model->findSetting("testSetKey", "testSetKey");
         $this->assertTrue($res->id > 0);
     }
-
-
 }

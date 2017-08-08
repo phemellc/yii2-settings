@@ -8,12 +8,10 @@
 
 namespace pheme\settings\tests;
 
-
 use pheme\settings\models\SettingSearch;
 
 class SettingSearchTest extends TestCase
 {
-
     public function testSearch()
     {
         $this->model->value = "i am value";
@@ -22,10 +20,9 @@ class SettingSearchTest extends TestCase
         $this->model->key = "testUpdate";
         $this->model->active = "1";
         $this->model->save();
-        $params = ['SettingSearch'=>['active'=>1]];
+        $params = ['SettingSearch' => ['active' => 1]];
         $model = new SettingSearch();
         $res = $model->search($params);
-        $this->assertTrue($res->count == 1 );
+        $this->assertTrue($res->count == 1);
     }
-
 }
