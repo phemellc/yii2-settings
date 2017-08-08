@@ -16,7 +16,6 @@
         <whitelist>
             <directory suffix=".php">./models</directory>
             <directory suffix=".php">./components</directory>
-            <file>./Module.php</file>
         </whitelist>
     </filter>
 </phpunit>
