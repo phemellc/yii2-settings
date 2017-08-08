@@ -132,7 +132,6 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     protected function destroyTestDbData()
     {
-
         $db = Yii::$app->getDb();
         $res = $db->createCommand()->dropTable('tb_settings')->execute();
     }

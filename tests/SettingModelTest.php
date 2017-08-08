@@ -8,7 +8,6 @@
 
 namespace pheme\settings\tests;
 
-
 use pheme\settings\models\Setting;
 
 class SettingModelTest extends TestCase
