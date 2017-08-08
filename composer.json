@@ -16,12 +16,20 @@
     ],
     "require": {
         "yiisoft/yii2": ">=2.0.6",
-        "pheme/yii2-toggle-column": "*",
+        "pheme/yii2-toggle-column": "*"
+    },
+    "require-dev": {
         "phpunit/phpunit": "~4.0"
     },
     "autoload": {
         "psr-4": {
             "pheme\\settings\\": ""
+        }
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
         }
     }
 }
