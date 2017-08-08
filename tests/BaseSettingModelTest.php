@@ -48,7 +48,6 @@ class BaseSettingModelTest extends TestCase
         $res1 = $this->model->deactivateSetting("testSetKey", "testSetKey");
         $res2 = $this->model->activateSetting("testSetKey", "testSetKey");
         $this->assertTrue($res1 && $res2);
-
     }
 
     public function testDeleteSetting()
