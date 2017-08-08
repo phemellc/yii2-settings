@@ -32,7 +32,6 @@ class ComponentSettingTest extends TestCase
 
     public function testSet()
     {
-
         $res = $this->setting->set('testSetKey', "i am testSet value", 'testSetKey');
         $this->assertTrue($res, '通过组件来修改testSetKey的section');
     }
