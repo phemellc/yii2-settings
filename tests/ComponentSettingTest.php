@@ -44,11 +44,11 @@ class ComponentSettingTest extends TestCase
         $this->assertTrue($res == "i am testSet value");
     }
 
-    public  function testHas()
+    public function testHas()
     {
         $this->setting->activate("testSetKey", "testSetKey");
-        $res2 = $this->setting->has("testSetKey", "testSetKey");
-        $this->assertTrue($res2);
+        $res = $this->setting->has("testSetKey", "testSetKey");
+        $this->assertTrue($res);
     }
 
     public function testDelete()
