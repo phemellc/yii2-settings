@@ -131,7 +131,7 @@ class Settings extends Component
         if ($searchDisabled) {
             $setting = $this->model->findSetting($key, $section);
         } else {
-            $setting = $this->get($key, $section);var_dump($setting);
+            $setting = $this->get($key, $section);
         }
         return is_null($setting) ? false : true;
     }
