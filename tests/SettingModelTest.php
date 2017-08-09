@@ -22,7 +22,10 @@ class SettingModelTest extends TestCase
         parent::setUp();
     }
 
-    public function testRules()
+    /**
+     * type 必须在指定范围内  通过getTypes
+     */
+    public function testRulesType()
     {
         $this->model->value = "1";
         $this->model->section = "i am section";
@@ -33,6 +36,19 @@ class SettingModelTest extends TestCase
         $this->assertTrue($this->model->validate(), "type must be in " . $allowType);
         $this->model->type = 'doubles';
         $this->assertFalse($this->model->validate(), "type must be in " . $allowType);
+    }
+
+    /**
+     * active must be boolean
+     */
+    public function testRulesActive()
+    {
+        $this->model->value = "1";
+        $this->model->section = "i am section";
+        $this->model->type = 'integer';
+        $this->model->modified = "i am created";
+        $this->model->active = 2;
+        $this->assertFalse($this->model->validate(), "active must be bool");
     }
 
     public function testAdd()
