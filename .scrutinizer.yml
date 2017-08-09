@@ -1,10 +1,6 @@
-imports:
-     - php
+checks:
+    php: true
 
-tools:
-    external_code_coverage:
-        timeout: 1800 # Timeout in seconds.
-    # disable copy paste detector and similarity analyzer as they have no real value
-    # and a huge bunch of false-positives
-    php_sim: false
-    php_cpd: false
+filter:
+    excluded_paths:
+        - tests/*
