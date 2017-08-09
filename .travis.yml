@@ -18,7 +18,6 @@ services:
 
 install:
   - travis_retry composer self-update
-  - travis_retry composer global require "fxp/composer-asset-plugin:^1.2.0"
   - composer config -g github-oauth.github.com dcb6b0049723eb6f56039b2d6389ac76eb29e352
   - travis_retry composer install --prefer-dist --no-interaction
   - travis_retry mysql -e 'CREATE DATABASE test;'
