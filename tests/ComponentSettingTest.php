@@ -21,6 +21,7 @@ class ComponentSettingTest extends TestCase
     {
         parent::setUp();
         $this->setting = Yii::$app->settings;
+        $this->setting->init();
         $this->model->value = "i am testSet value";
         $this->model->section = "testSetKey";
         $this->model->type = 'string';

@@ -27,8 +27,9 @@ class BaseSettingModelTest extends TestCase
 
     public function testGetSettings()
     {
-        $res = $this->model->getSettings();
-        $this->assertTrue(in_array(['i am testSet value', 'string'], $res['testSetKey']));
+        $res = $this->model->getSettings()['testSetKey']['testSetKey'];
+        $this->assertTrue($res[0] == 'i am testSet value');
+        $this->assertTrue($res[1] == 'string');
     }
 
     public function testSetSetting()

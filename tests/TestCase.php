@@ -66,6 +66,9 @@ class TestCase extends PHPUnit_Framework_TestCase
                 'settings' => [
                     'class' => 'pheme\settings\components\Settings'
                 ],
+                'cache'  =>[
+                    'class' =>'yii\caching\ArrayCache'
+                ],
             ],
             'modules' => [
                 'settings' => [
@@ -99,6 +102,9 @@ class TestCase extends PHPUnit_Framework_TestCase
                 ],
                 'settings' => [
                     'class' => 'pheme\settings\components\Settings'
+                ],
+                'cache'  =>[
+                    'class' =>'yii\caching\ArrayCache'
                 ],
             ],
             'modules' => [
