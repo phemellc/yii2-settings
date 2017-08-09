@@ -25,5 +25,11 @@
         "psr-4": {
             "pheme\\settings\\": ""
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
 }
