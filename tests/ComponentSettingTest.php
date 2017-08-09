@@ -8,6 +8,7 @@
 
 namespace pheme\settings\tests;
 
+use pheme\settings\components\Settings;
 use Yii;
 
 class ComponentSettingTest extends TestCase
@@ -78,7 +79,7 @@ class ComponentSettingTest extends TestCase
 
     public function testGetRawConfig()
     {
-        $res = $this->setting->activate("testSetKey", "testSetKey");
+        $this->setting->activate("testSetKey", "testSetKey");
         $this->setting->get('testSetKey', "testSetKey");
         $res = $this->setting->getRawConfig();
         $this->assertTrue($res['testSetKey']['testSetKey'][0] == $this->model->value);
@@ -88,5 +89,10 @@ class ComponentSettingTest extends TestCase
     {
         $res = $this->setting->clearCache();
         $this->assertTrue($res);
+    }
+
+    public function testGetModelClass()
+    {
+        $this->assertTrue($this->setting->modelClass == (new Settings())->modelClass);
     }
 }
