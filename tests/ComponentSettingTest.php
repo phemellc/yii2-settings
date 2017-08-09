@@ -43,6 +43,8 @@ class ComponentSettingTest extends TestCase
         $this->setting->activate("testSetKey", "testSetKey");
         $res = $this->setting->get("testSetKey", "testSetKey");
         $this->assertTrue($res == "i am testSet value");
+        $res1 = $this->setting->get("testSetKey.testSetKey");
+        $this->assertTrue($res1 == "i am testSet value");
     }
 
     public function testHas()
@@ -72,7 +74,7 @@ class ComponentSettingTest extends TestCase
 
     public function testDeActivate()
     {
-        $res = $this->setting->activate("testSetKey", "testSetKey");
+        $this->setting->activate("testSetKey", "testSetKey");
         $res = $this->setting->deactivate("testSetKey", "testSetKey");
         $this->assertTrue($res);
     }

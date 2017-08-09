@@ -25,6 +25,12 @@ class BaseSettingModelTest extends TestCase
         $this->model->save();
     }
 
+    public function testSave()
+    {
+        $this->model->type = "double";
+        $this->assertFalse($this->model->save());
+    }
+
     public function testGetSettings()
     {
         $res = $this->model->getSettings()['testSetKey']['testSetKey'];
@@ -35,6 +41,8 @@ class BaseSettingModelTest extends TestCase
     public function testSetSetting()
     {
         $res = $this->model->setSetting("testSetKey", "testSetKey", "aa", "string");
+        $this->assertTrue($res);
+        $res = $this->model->setSetting("testSetKey", "testSetKey1", "bb", "string");
         $this->assertTrue($res);
     }
 
