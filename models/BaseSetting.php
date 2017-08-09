@@ -15,7 +15,6 @@ use yii\helpers\ArrayHelper;
 use yii\base\InvalidParamException;
 use yii\behaviors\TimestampBehavior;
 
-
 /**
  * This is the model class for table "settings".
  *
@@ -188,7 +187,8 @@ class BaseSetting extends ActiveRecord implements SettingInterface
     /**
      * @inheritdoc
      */
-    public function findSetting($key, $section = null) {
+    public function findSetting($key, $section = null)
+    {
         if (is_null($section)) {
             $pieces = explode('.', $key, 2);
             if (count($pieces) > 1) {

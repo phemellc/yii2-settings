@@ -263,9 +263,7 @@ class Settings extends Component
     {
         if ($this->_data === null) {
             if ($this->cache instanceof Cache) {
-
                 $data = $this->cache->get($this->cacheKey);
-
                 if ($data === false) {
                     $data = $this->model->getSettings();
                     $this->cache->set($this->cacheKey, $data);
