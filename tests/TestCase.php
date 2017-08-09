@@ -24,7 +24,7 @@ class TestCase extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->mockWebApplication();
+        $this->mockApplication();
         $this->createTestDbData();
         $this->model = new Setting();
     }

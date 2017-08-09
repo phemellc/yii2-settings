@@ -131,9 +131,9 @@ class Settings extends Component
         if ($searchDisabled) {
             $setting = $this->model->findSetting($key, $section);
         } else {
-            $setting = $this->get($key, $section);
+            $setting = $this->get($key, $section);var_dump($setting);
         }
-        is_null($setting) ? false : true;
+        return is_null($setting) ? false : true;
     }
 
     /**
@@ -248,7 +248,6 @@ class Settings extends Component
         if ($this->_data === null) {
             if ($this->cache instanceof Cache) {
                 $data = $this->cache->get($this->cacheKey);
-
                 if ($data === false) {
                     $data = $this->model->getSettings();
                     $this->cache->set($this->cacheKey, $data);
