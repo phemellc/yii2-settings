@@ -152,7 +152,7 @@ class Settings extends Component
         }
 
         if ($this->model->setSetting($section, $key, $value, $type)) {
-            return true;            
+            return true;
         }
         return false;
     }
@@ -167,7 +167,8 @@ class Settings extends Component
      *
      * @return bool|mixed
      */
-    public function getOrSet($key, $value, $section = null, $type = null){
+    public function getOrSet($key, $value, $section = null, $type = null)
+    {
         if ($this->has($key, $section, true)) {
             return $this->get($key, $section);
         } else {
@@ -263,9 +264,7 @@ class Settings extends Component
     {
         if ($this->_data === null) {
             if ($this->cache instanceof Cache) {
-
                 $data = $this->cache->get($this->cacheKey);
-
                 if ($data === false) {
                     $data = $this->model->getSettings();
                     $this->cache->set($this->cacheKey, $data);
