@@ -11,6 +11,7 @@ namespace pheme\settings\components;
 use yii\base\Component;
 use yii\caching\Cache;
 use Yii;
+use yii\helpers\Json;
 
 /**
  * @author Aris Karageorgos <aris@phe.me>
@@ -54,6 +55,12 @@ class Settings extends Component
      * @var string cache key
      */
     public $cacheKey = 'pheme/settings';
+
+    /**
+     * @var bool Whether to convert objects stored as JSON into an PHP array
+     * @since 0.6
+     */
+    public $autoDecodeJson = false;
 
     /**
      * Holds a cached copy of the data for the current request
@@ -110,12 +117,17 @@ class Settings extends Component
 
         if (isset($data[$section][$key][0])) {
             if (in_array($data[$section][$key][1], ['object', 'boolean', 'bool', 'integer', 'int', 'float', 'string', 'array'])) {
-                settype($data[$section][$key][0], $data[$section][$key][1]);
+                if ($this->autoDecodeJson && $data[$section][$key][1] === 'object') {
+                    $value = Json::decode($data[$section][$key][0]);
+                } else {
+                    $value = $data[$section][$key][0];
+                    settype($value, $data[$section][$key][1]);
+                }
             }
         } else {
-            $data[$section][$key][0] = $default;
+            $value = $default;
         }
-        return $data[$section][$key][0];
+        return $value;
     }
 
     /**
