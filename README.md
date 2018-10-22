@@ -1,3 +1,9 @@
+[![StyleCI](https://styleci.io/repos/99540308/shield?branch=master)](https://styleci.io/repos/99540308)
+[![Build Status](https://travis-ci.org/monster-hunter/yii2-settings.svg?branch=master)](https://travis-ci.org/monster-hunter/yii2-settings)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/monster-hunter/yii2-settings/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/monster-hunter/yii2-settings/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/monster-hunter/yii2-settings/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/monster-hunter/yii2-settings/?branch=master)
+
+
 Yii2 Settings
 =============
 Yii2 Database settings
@@ -87,7 +93,7 @@ SettingsAction
 To use a custom settings form, you can use the included `SettingsAction`.
 
 1. Create a model class with your validation rules.
-2. Create an associated view with an `ActiveForm` contain all the settings you need.
+2. Create an associated view with an `ActiveForm` containing all the settings you need.
 3. Add `pheme\settings\SettingsAction` to the controller's actions.
 
 The settings will be stored in section taken from the form name, with the key being the field name.

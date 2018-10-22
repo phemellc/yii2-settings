@@ -67,4 +67,12 @@ interface SettingInterface
      */
     public function deactivateSetting($section, $key);
 
+    /**
+     * Finds a single setting
+     *
+     * @param $key
+     * @param $section
+     * @return SettingInterface single setting
+     */
+    public function findSetting($section, $key);
 }

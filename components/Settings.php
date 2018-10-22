@@ -11,6 +11,7 @@ namespace pheme\settings\components;
 use yii\base\Component;
 use yii\caching\Cache;
 use Yii;
+use yii\helpers\Json;
 
 /**
  * @author Aris Karageorgos <aris@phe.me>
@@ -56,6 +57,12 @@ class Settings extends Component
     public $cacheKey = 'pheme/settings';
 
     /**
+     * @var bool Whether to convert objects stored as JSON into an PHP array
+     * @since 0.6
+     */
+    public $autoDecodeJson = false;
+
+    /**
      * Holds a cached copy of the data for the current request
      *
      * @var mixed
@@ -90,8 +97,8 @@ class Settings extends Component
      * are equivalent
      *
      * @param $key
-     * @param null $section
-     * @param null $default
+     * @param string|null $section
+     * @param string|null $default
      * @return mixed
      */
     public function get($key, $section = null, $default = null)
@@ -109,11 +116,36 @@ class Settings extends Component
         $data = $this->getRawConfig();
 
         if (isset($data[$section][$key][0])) {
-            settype($data[$section][$key][0], $data[$section][$key][1]);
+            if (in_array($data[$section][$key][1], ['object', 'boolean', 'bool', 'integer', 'int', 'float', 'string', 'array'])) {
+                if ($this->autoDecodeJson && $data[$section][$key][1] === 'object') {
+                    $value = Json::decode($data[$section][$key][0]);
+                } else {
+                    $value = $data[$section][$key][0];
+                    settype($value, $data[$section][$key][1]);
+                }
+            }
         } else {
-            $data[$section][$key][0] = $default;
+            $value = $default;
         }
-        return $data[$section][$key][0];
+        return $value;
+    }
+
+    /**
+     * Checks to see if a setting exists.
+     * If $searchDisabled is set to true, calling this function will result in an additional query.
+     * @param $key
+     * @param string|null $section
+     * @param boolean $searchDisabled
+     * @return boolean
+     */
+    public function has($key, $section = null, $searchDisabled = false)
+    {
+        if ($searchDisabled) {
+            $setting = $this->model->findSetting($key, $section);
+        } else {
+            $setting = $this->get($key, $section);
+        }
+        return is_null($setting) ? false : true;
     }
 
     /**
@@ -132,11 +164,28 @@ class Settings extends Component
         }
 
         if ($this->model->setSetting($section, $key, $value, $type)) {
-            if ($this->clearCache()) {
-                return true;
-            }
+            return true;
         }
         return false;
+    }
+
+    /**
+     * Returns the specified key or sets the key with the supplied (default) value
+     *
+     * @param $key
+     * @param $value
+     * @param null $section
+     * @param null $type
+     *
+     * @return bool|mixed
+     */
+    public function getOrSet($key, $value, $section = null, $type = null)
+    {
+        if ($this->has($key, $section, true)) {
+            return $this->get($key, $section);
+        } else {
+            return $this->set($key, $value, $section, $type);
+        }
     }
 
     /**
@@ -227,9 +276,7 @@ class Settings extends Component
     {
         if ($this->_data === null) {
             if ($this->cache instanceof Cache) {
-
                 $data = $this->cache->get($this->cacheKey);
-
                 if ($data === false) {
                     $data = $this->model->getSettings();
                     $this->cache->set($this->cacheKey, $data);
