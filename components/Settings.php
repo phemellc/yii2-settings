@@ -116,12 +116,16 @@ class Settings extends Component
         $data = $this->getRawConfig();
 
         if (isset($data[$section][$key][0])) {
-            if (in_array($data[$section][$key][1], ['object', 'boolean', 'bool', 'integer', 'int', 'float', 'string', 'array'])) {
-                if ($this->autoDecodeJson && $data[$section][$key][1] === 'object') {
-                    $value = Json::decode($data[$section][$key][0]);
+
+            $value = $data[$section][$key][0];
+            $type = $data[$section][$key][1];
+
+            //convert value to needed type
+            if (in_array($type, ['object', 'boolean', 'bool', 'integer', 'int', 'float', 'string', 'array'])) {
+                if ($this->autoDecodeJson && $type === 'object') {
+                    $value = Json::decode($value);
                 } else {
-                    $value = $data[$section][$key][0];
-                    settype($value, $data[$section][$key][1]);
+                    settype($value, $type);
                 }
             }
         } else {
