@@ -47,4 +47,5 @@ return [
     'ip' => 'IP',
     'url' => 'URL',
     'object' => 'JSON',
+    'Successfully saved settings on {section}' => 'Настройки удачно сохранены для {section}'
 ];

@@ -15,7 +15,6 @@ use yii\helpers\ArrayHelper;
 use yii\base\InvalidParamException;
 use yii\behaviors\TimestampBehavior;
 
-
 /**
  * This is the model class for table "settings".
  *
@@ -53,7 +52,7 @@ class BaseSetting extends ActiveRecord implements SettingInterface
                 'unique',
                 'targetAttribute' => ['section', 'key'],
             ],
-            ['type', 'in', 'range' => ['string', 'integer', 'boolean', 'float', 'double', 'object', 'null']],
+            ['type', 'in', 'range' => ['string', 'integer', 'boolean', 'float', 'double', 'object', 'null', 'ip', 'email', 'url']],
             [['created', 'modified'], 'safe'],
             [['active'], 'boolean'],
         ];
@@ -117,20 +116,9 @@ class BaseSetting extends ActiveRecord implements SettingInterface
 
         if ($type !== null) {
             $model->type = $type;
-        } else {
-            $t = gettype($value);
-            if ($t == 'string') {
-                $error = false;
-                try {
-                    Json::decode($value);
-                } catch (InvalidParamException $e) {
-                    $error = true;
-                }
-                if (!$error) {
-                    $t = 'object';
-                }
-            }
-            $model->type = $t;
+        } elseif ( ! isset($model->type) ) {
+            $type = $this->getValueType($value);
+            $model->type = $type;
         }
 
         return $model->save();
@@ -188,7 +176,8 @@ class BaseSetting extends ActiveRecord implements SettingInterface
     /**
      * @inheritdoc
      */
-    public function findSetting($key, $section = null) {
+    public function findSetting($key, $section = null)
+    {
         if (is_null($section)) {
             $pieces = explode('.', $key, 2);
             if (count($pieces) > 1) {
@@ -199,5 +188,52 @@ class BaseSetting extends ActiveRecord implements SettingInterface
             }
         }
         return $this->find()->where(['section' => $section, 'key' => $key])->limit(1)->one();
+    }
+
+    /**
+     * @param $value
+     * @return string|void
+     */
+    protected function getValueType($value)
+    {
+
+        if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
+            return 'email';
+        }
+
+        if (filter_var($value, FILTER_VALIDATE_URL)) {
+            return 'url';
+        }
+
+        if (filter_var($value, FILTER_VALIDATE_IP)) {
+            return 'ip';
+        }
+
+        if (filter_var($value, FILTER_VALIDATE_BOOLEAN)) {
+            return 'boolean';
+        }
+
+        if (filter_var($value, FILTER_VALIDATE_INT)) {
+            return 'integer';
+        }
+
+        if (filter_var($value, FILTER_VALIDATE_FLOAT)) {
+            return 'float';
+        }
+
+        $t = gettype($value);
+
+        if ($t === 'object' && !empty($value)) {
+            $error = false;
+            try {
+                Json::decode($value);
+            } catch (InvalidArgumentException $e) {
+                $error = true;
+            }
+            if (!$error) {
+                $t = 'object';
+            }
+        }
+        return $t;
     }
 }

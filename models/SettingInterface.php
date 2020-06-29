@@ -75,5 +75,4 @@ interface SettingInterface
      * @return SettingInterface single setting
      */
     public function findSetting($section, $key);
-
 }

@@ -11,6 +11,7 @@ namespace pheme\settings\components;
 use yii\base\Component;
 use yii\caching\Cache;
 use Yii;
+use yii\helpers\Json;
 
 /**
  * @author Aris Karageorgos <aris@phe.me>
@@ -54,6 +55,12 @@ class Settings extends Component
      * @var string cache key
      */
     public $cacheKey = 'pheme/settings';
+
+    /**
+     * @var bool Whether to convert objects stored as JSON into an PHP array
+     * @since 0.6
+     */
+    public $autoDecodeJson = false;
 
     /**
      * Holds a cached copy of the data for the current request
@@ -109,13 +116,22 @@ class Settings extends Component
         $data = $this->getRawConfig();
 
         if (isset($data[$section][$key][0])) {
-            if ($data[$section][$key][1] !== 'object') {
-                settype($data[$section][$key][0], $data[$section][$key][1]);
+
+            $value = $data[$section][$key][0];
+            $type = $data[$section][$key][1];
+
+            //convert value to needed type
+            if (in_array($type, ['object', 'boolean', 'bool', 'integer', 'int', 'float', 'string', 'array'])) {
+                if ($this->autoDecodeJson && $type === 'object') {
+                    $value = Json::decode($value);
+                } else {
+                    settype($value, $type);
+                }
             }
         } else {
-            $data[$section][$key][0] = $default;
+            $value = $default;
         }
-        return $data[$section][$key][0];
+        return $value;
     }
 
     /**
@@ -133,7 +149,7 @@ class Settings extends Component
         } else {
             $setting = $this->get($key, $section);
         }
-        is_null($setting) ? false : true;
+        return is_null($setting) ? false : true;
     }
 
     /**
@@ -152,11 +168,28 @@ class Settings extends Component
         }
 
         if ($this->model->setSetting($section, $key, $value, $type)) {
-            if ($this->clearCache()) {
-                return true;
-            }
+            return true;
         }
         return false;
+    }
+
+    /**
+     * Returns the specified key or sets the key with the supplied (default) value
+     *
+     * @param $key
+     * @param $value
+     * @param null $section
+     * @param null $type
+     *
+     * @return bool|mixed
+     */
+    public function getOrSet($key, $value, $section = null, $type = null)
+    {
+        if ($this->has($key, $section, true)) {
+            return $this->get($key, $section);
+        } else {
+            return $this->set($key, $value, $section, $type);
+        }
     }
 
     /**
@@ -247,9 +280,7 @@ class Settings extends Component
     {
         if ($this->_data === null) {
             if ($this->cache instanceof Cache) {
-
                 $data = $this->cache->get($this->cacheKey);
-
                 if ($data === false) {
                     $data = $this->model->getSettings();
                     $this->cache->set($this->cacheKey, $data);

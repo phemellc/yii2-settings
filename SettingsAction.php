@@ -25,18 +25,24 @@ class SettingsAction extends Action
     public $viewName = 'settings';
 
     /**
+     * @var string name on section. Default is ModelClass formname
+     */
+    public $section = null;
+
+    /**
      * Render the settings form.
      */
     public function run()
     {
         /* @var $model \yii\db\ActiveRecord */
         $model = new $this->modelClass();
+        $section = ($this->section !== null) ? $this->section : $model->formName();
         if ($this->scenario) {
             $model->setScenario($this->scenario);
         }
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             foreach ($model->toArray() as $key => $value) {
-                Yii::$app->settings->set($key, $value, $model->formName());
+                Yii::$app->settings->set($key, $value, $section);
             }
             Yii::$app->getSession()->addFlash('success',
                 Module::t('settings', 'Successfully saved settings on {section}',
@@ -45,7 +51,7 @@ class SettingsAction extends Action
             );
         }
         foreach ($model->attributes() as $key) {
-            $model->{$key} = Yii::$app->settings->get($key, $model->formName());
+            $model->{$key} = Yii::$app->settings->get($key, $section);
         }
         return $this->controller->render($this->viewName, ['model' => $model]);
     }

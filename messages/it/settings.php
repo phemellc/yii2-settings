@@ -32,6 +32,7 @@ return [
     'Section' => 'Sezione',
     'Setting' => 'Impostazione',
     'Settings' => 'Impostazioni',
+    'Successfully saved settings on {section}' => 'Impostazioni salvata correttamente nella sezione {section}',
     'Type' => 'Tipo',
     'Update' => 'Aggiorna',
     'Update {modelClass}: ' => 'Aggiorna {modelClass}: ',

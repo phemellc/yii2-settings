@@ -1,3 +1,9 @@
+[![StyleCI](https://styleci.io/repos/99540308/shield?branch=master)](https://styleci.io/repos/99540308)
+[![Build Status](https://travis-ci.org/monster-hunter/yii2-settings.svg?branch=master)](https://travis-ci.org/monster-hunter/yii2-settings)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/monster-hunter/yii2-settings/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/monster-hunter/yii2-settings/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/monster-hunter/yii2-settings/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/monster-hunter/yii2-settings/?branch=master)
+
+
 Yii2 Settings
 =============
 Yii2 Database settings
@@ -96,7 +102,9 @@ __Model__:
 
 ```php
 class Site extends Model {
+	
 	public $siteName, $siteDescription;
+	
 	public function rules()
 	{
 		return [
@@ -106,20 +114,25 @@ class Site extends Model {
 	
 	public function fields()
 	{
-	        return ['siteName', 'siteDescription'];
+        return ['siteName', 'siteDescription'];
 	}
 	
 	public function attributes()
 	{
-	        return ['siteName', 'siteDescription'];
+        return ['siteName', 'siteDescription'];
 	}
 }
 ```
 __Views__:
 ```php
 <?php $form = ActiveForm::begin(['id' => 'site-settings-form']); ?>
+
 <?= $form->field($model, 'siteName') ?>
 <?= $form->field($model, 'siteDescription') ?>
+<?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+
+<?php ActiveForm::end(); ?>
+
 ```
 __Controller__:
 ```php
@@ -130,6 +143,7 @@ function actions(){
                 'class' => 'pheme\settings\SettingsAction',
                 'modelClass' => 'app\models\Site',
                 //'scenario' => 'site',	// Change if you want to re-use the model for multiple setting form.
+                //'section' => 'site', // By default use modelClass formname value 
                 'viewName' => 'site-settings'	// The form we need to render
             ],
         //....
